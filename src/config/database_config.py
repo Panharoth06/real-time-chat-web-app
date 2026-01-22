@@ -6,6 +6,7 @@ from sqlalchemy.orm import DeclarativeBase
 load_dotenv()
 
 # Read environment variables
+              # os.getenv("KEY", "default_value")
 DATABASE_TYPE = os.getenv("DATABASE_TYPE", "postgresql+asyncpg") 
 DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
 DATABASE_PORT = os.getenv("DATABASE_PORT", "5432")

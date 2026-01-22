@@ -4,9 +4,12 @@ from src.config.database_config import Base
 from src.core.database_connection import engine
 
 # Import all models so SQLAlchemy registers them
+#  models
 from src.features.users import models as user_models
 from src.features.chat.rooms import models as room_models
 from src.features.chat.messages import models as message_models
+
+# routers 
 from src.features.users.router import router as user_router
 from src.features.chat.messages.router import router as message_router
 from src.features.chat.rooms.router import router as room_router

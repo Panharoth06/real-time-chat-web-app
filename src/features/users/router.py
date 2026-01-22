@@ -7,10 +7,7 @@ from src.core.database_connection import get_db
 router = APIRouter(prefix="/users", tags=["Users"])
 
 @router.post("/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
-async def create_user_endpoint(
-    payload: UserCreate,
-    db: AsyncSession = Depends(get_db)
-) -> UserResponse:
+async def create_user_endpoint(payload: UserCreate, db: AsyncSession = Depends(get_db)) -> UserResponse:
     try:
         return await services.create_user(db, payload)
     except services.UserAlreadyExists as e:

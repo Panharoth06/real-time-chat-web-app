@@ -18,15 +18,18 @@ async def create_room_chat(db: AsyncSession, payload: RoomCreate) -> RoomRespons
         raise RoomAlreadyExists("Room already exists, try a different name :)")
     
     room: Room = await crud.create_room_chat(db ,payload.name) 
+    
     return RoomResponse.model_validate(room)       
+
 
 async def get_room_by_id(db: AsyncSession, room_id: uuid.UUID) -> RoomResponse:
     exists = await crud.get_room_chat_by_id(db, room_id)
     
     if not exists:
-        raise RoomNotFound(f"Room with ID: {room_id} is not exists :(")
+        raise RoomNotFound(f"Room with ID: {room_id} not found :(")
     
     return RoomResponse.model_validate(exists) 
+
 
 async def get_room_chat_by_name(db: AsyncSession, room_name: str) -> RoomResponse:
     exists = await crud.get_room_chat_by_name(db, room_name)
@@ -37,8 +40,5 @@ async def get_room_chat_by_name(db: AsyncSession, room_name: str) -> RoomRespons
     return RoomResponse.model_validate(exists)
 
 
-async def get_room_model_by_name(
-    db: AsyncSession,
-    room_name: str
-) -> Room | None:
+async def get_room_model_by_name(db: AsyncSession, room_name: str) -> Room | None:
     return await crud.get_room_chat_by_name(db, room_name)

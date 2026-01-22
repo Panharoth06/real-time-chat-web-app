@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, status, Depends
-
 from src.core.database_connection import get_db
 from src.features.chat.rooms import services
 from sqlalchemy.ext.asyncio import AsyncSession
