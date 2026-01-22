@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 import uuid
 
 class UserCreate(BaseModel):
@@ -9,5 +9,4 @@ class UserResponse(BaseModel):
     id: uuid.UUID
     username: str
     
-    class Config:
-        from_attributes = True  # SQLAlchemy → Pydantic
+    model_config = ConfigDict(from_attributes=True)

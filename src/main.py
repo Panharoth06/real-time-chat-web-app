@@ -8,6 +8,8 @@ from src.features.users import models as user_models
 from src.features.chat.rooms import models as room_models
 from src.features.chat.messages import models as message_models
 from src.features.users.router import router as user_router
+from src.features.chat.messages.router import router as message_router
+from src.features.chat.rooms.router import router as room_router
 
 
 @asynccontextmanager
@@ -26,6 +28,8 @@ app = FastAPI(
 )
 
 app.include_router(user_router)
+app.include_router(message_router)
+app.include_router(room_router)
 
 
 @app.get("/")

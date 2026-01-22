@@ -1,10 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, ConfigDict
 import uuid
+from src.features.chat.messages.schemas import MessageResponse
 
 class RoomCreate(BaseModel):
-    room_name: str
+    name: str
 
 class RoomResponse(BaseModel):
     id: uuid.UUID
-    room_name: str
-    
+    name: str
+    messages: list[MessageResponse] = Field(default_factory=list)
+
+    model_config = ConfigDict(from_attributes=True)
